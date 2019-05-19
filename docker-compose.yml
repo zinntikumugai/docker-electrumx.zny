@@ -1,0 +1,19 @@
+version: 3
+services:
+  bitzenyd:
+    container_name: bitzenyd
+    volumes:
+      - './data/.bitzeny:/root/.bitzeny'
+    ports:
+      - '9252:9252'
+    image: './coind'
+  electrumx:
+    container_name: bitzeny-electrumx
+    volumes:
+      - './data/electrumx:/data'
+    environment:
+      - 'DAEMON_URL=http://user:pass@localhost:9252'
+      - COIN=Bitzeny
+    ports:
+      - '50002:50002'
+    image: './electrumx'
