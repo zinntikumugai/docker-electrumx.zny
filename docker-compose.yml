@@ -1,12 +1,14 @@
-version: 3
+version: '3'
 services:
   bitzenyd:
     container_name: bitzenyd
     volumes:
-      - './data/.bitzeny:/root/.bitzeny'
+      - './data/.bitzeny:/home/bitcoin/.bitzeny'
     ports:
       - '9252:9252'
-    image: './coind'
+    build: coind
+#    image: nao20010128nao/docker-bitzenyd:alpine
+
   electrumx:
     container_name: bitzeny-electrumx
     volumes:
@@ -16,4 +18,4 @@ services:
       - COIN=Bitzeny
     ports:
       - '50002:50002'
-    image: './electrumx'
+    build: electrumx
